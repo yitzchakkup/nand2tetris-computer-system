@@ -1,0 +1,48 @@
+// This file is part of nand2tetris, as taught in The Hebrew University, and
+// was written by Aviv Yaish. It is an extension to the specifications given
+// [here](https://www.nand2tetris.org) (Shimon Schocken and Noam Nisan, 2017),
+// as allowed by the Creative Common Attribution-NonCommercial-ShareAlike 3.0
+// Unported [License](https://creativecommons.org/licenses/by-nc-sa/3.0/).
+
+
+// The ExtendAlu chip is an extension of the standard ALU which also supports
+// shift operations.
+// The inputs of the extended ALU are instruction[9], x[16], y[16].
+// The "ng" and "zr" output pins behave the same as in the regular ALU.
+// The "out" output is defined as follows:
+// If instruction[8]=1 and instruction[7]=1 the output is identical to the 
+// regular ALU, where:
+// instruction[5]=zx, instruction[4]=nx, ..., instruction[0]=no
+// Else, if instruction[8]=0 and instruction[7]=1, the output is a shift:
+// - If instruction[4] == 0, the input "y" will be shifted, otherwise "x".
+// - If instruction[5] == 0, the shift will be a right-shift, otherwise left.
+// - All other inputs are undefined.
+
+CHIP ExtendAlu {
+     IN x[16], y[16], instruction[9];
+     OUT out[16], zr, ng;
+
+     PARTS:
+     And(a=instruction[8], b=instruction[7], out=regularAUL);
+
+//regular Alu
+     ALU(x=x, y=y, zx=instruction[5], nx=instruction[4], zy=instruction[3], ny=instruction[2], f=instruction[1], no=instruction[0], out=RegOut, zr=RegZr, ng=RegNg);
+
+
+//Shift
+     ShiftLeft(in=x , out=leftX);
+     ShiftLeft(in=y , out=leftY);
+     ShiftRight(in=x , out=rightX);
+     ShiftRight(in=y , out=rightY);
+     Mux4Way16(a=rightY, b=rightX, c=leftY, d=leftX, sel=instruction[4..5], out=resultShift);
+
+//Choose output (I decided to ignore copletely instruction[7], 
+//(if off undefined behavior, in my implemention will behave as if instruction[7] is on)
+    Mux16(a=resultShift, b=RegOut, sel=instruction[8], out=out, out[0..7]=out1, out[8..14]= out2, out[15]= out3, out[15]=ng);
+
+
+    Or8Way(in=out1, out=Or1);
+    Or8Way(in[0..6]=out2,in[7]=out3, out=Or23);
+    Or(a=Or1, b=Or23, out=Notzr);
+    Not(in=Notzr, out=zr);
+}
