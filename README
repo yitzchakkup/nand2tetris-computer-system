@@ -1,0 +1,42 @@
+# Full-Stack Computer Architecture (Nand2Tetris)
+
+## 🚀 Overview
+This repository contains my complete implementation of a 16-bit computer system, built from the ground up. Following the Nand2Tetris hardware/software stack, this project spans from the construction of primitive logic gates to the development of a fully functional compiler for a high-level object-based language. 
+
+By engineering every layer of the computing stack, this project demonstrates a deep, practical understanding of computer architecture, machine language, virtual machines, and compiler design.
+
+## 🗂️ Project Architecture & Hierarchy
+
+### Phase 1: Hardware Construction (HDL)
+* **`01_Boolean_Logic/`**: Implementation of fundamental logic gates (AND, OR, NOT, Multiplexers) starting from a single elementary NAND gate.
+* **`02_Boolean_Arithmetic/`**: Construction of Half-Adders, Full-Adders, and a complete Arithmetic Logic Unit (ALU).
+* **`03_Sequential_Logic/`**: Development of state-maintaining memory components, including D-Flip-Flops, Registers, RAM units, and the Program Counter.
+* **`05_Computer_Architecture/`**: Integration of the ALU, memory, and control logic to build the Central Processing Unit (CPU) and the final 16-bit Hack hardware platform.
+
+### Phase 2: Software Hierarchy 
+* **`04_Machine_Language/`**: Low-level assembly programming, interacting directly with the hardware's memory-mapped I/O (screen and keyboard).
+* **`06_Assembler/`**: A custom assembler (written in Python) that parses and translates symbolic Hack assembly code into executable binary machine instructions.
+* **`07_08_Virtual_Machine/`**: A two-part Virtual Machine translator bridging high-level code and assembly.
+  * *`07_Stack_Arithmetic/`*: Handles stack management and basic logical/arithmetic operations.
+  * *`08_Program_Control/`*: Implements branching and function call/return logic (call stack management).
+* **`10_11_Compiler/`**: A two-tier compiler for the high-level, object-based "Jack" programming language.
+  * *`10_Syntax_Analyzer/`*: Tokenizes input and parses it into an Abstract Syntax Tree (AST) using XML.
+  * *`11_Code_Generator/`*: Translates the parsed AST into executable VM code.
+
+*(Note: Chapter 9, which focuses on writing a high-level application in the Jack language, was intentionally bypassed to focus strictly on the core systems architecture and compiler construction).*
+
+## 🛠️ Technology Stack
+* **Hardware:** Custom Hardware Description Language (HDL), Hardware Simulators.
+* **Low-Level:** Hack Assembly Language, Machine Code.
+* **High-Level/Tools:** Python (Assembler, VM Translator, Compiler), Jack (Object-Based Language), XML (Syntax parsing).
+
+## ⚙️ Usage & Execution
+This repository contains the source code for the solutions. To run and test these files, you will need the official Nand2Tetris Software Suite (Hardware Simulator, CPU Emulator, VM Emulator), which can be downloaded from the [official Nand2Tetris website](https://www.nand2tetris.org/).
+
+---
+
+## 📄 Acknowledgments & License
+
+This repository contains my personal implementations of the projects assigned in the Nand2Tetris course, as taught at The Hebrew University of Jerusalem by Aviv Yaish. 
+
+The underlying course structure, specifications, and hardware simulators are an extension of the original work created by Shimon Schocken and Noam Nisan (2017). Use of the course specifications is allowed under the [Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License](https://creativecommons.org/licenses/by-nc-sa/3.0/).
