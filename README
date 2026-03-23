@@ -1,9 +1,9 @@
 # Full-Stack Computer Architecture (Nand2Tetris)
 
 ## 🚀 Overview
-This repository contains my complete implementation of a 16-bit computer system, built from the ground up. Following the Nand2Tetris hardware/software stack, this project spans from the construction of primitive logic gates to the development of a fully functional compiler for a high-level object-based language. 
+This repository contains my implementation of a 16-bit computer system, built from the ground up. Based on the renowned Nand2Tetris hardware/software stack, this project spans from the construction of primitive logic gates to the development of a fully functional two-tier compiler for a high-level object-based language. 
 
-By engineering every layer of the computing stack, this project demonstrates a deep, practical understanding of computer architecture, machine language, virtual machines, and compiler design.
+By engineering the computing stack layer by layer, this project demonstrates a deep, practical understanding of computer architecture, machine language, virtual machines, and compiler design.
 
 ## 🗂️ Project Architecture & Hierarchy
 
@@ -23,7 +23,7 @@ By engineering every layer of the computing stack, this project demonstrates a d
   * *`10_Syntax_Analyzer/`*: Tokenizes input and parses it into an Abstract Syntax Tree (AST) using XML.
   * *`11_Code_Generator/`*: Translates the parsed AST into executable VM code.
 
-*(Note: Chapter 9, which focuses on writing a high-level application in the Jack language, was intentionally bypassed to focus strictly on the core systems architecture and compiler construction).*
+*(Note: Chapters 9 and 12—which focus on writing a high-level application in the Jack language and developing the OS standard libraries—were excluded from our cohort's curriculum to focus exclusively on core hardware architecture, virtual machines, and compilation).*
 
 ## 🛠️ Technology Stack
 * **Hardware:** Custom Hardware Description Language (HDL), Hardware Simulators.
